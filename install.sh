@@ -20,7 +20,7 @@ mkdir -p $HOME/.config
 
 ln -s $DIR/.bashrc $HOME
 ln -s $DIR/.bash_profile $HOME
-ln -s $DIR/.basrc_colors $HOME
+ln -s $DIR/.bashrc_colors $HOME
 ln -s $DIR/.profile $HOME
 ln -s $DIR/.gitconfig $HOME
 ln -s $DIR/.asoundrc $HOME
