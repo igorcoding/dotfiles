@@ -116,6 +116,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -f ~/.bash_colors ]; then
+    . ~/.bash_colors
+fi
+
+VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper_lazy.sh
+if [ -f $VIRTUALENVWRAPPER ]; then
+    source $VIRTUALENVWRAPPER
+fi
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL

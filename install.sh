@@ -19,18 +19,17 @@ mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config
 
 ln -s $DIR/.bashrc $HOME
-ln -s $DIR/.bash_profile $HOME
 ln -s $DIR/.bashrc_colors $HOME
 ln -s $DIR/.profile $HOME
 ln -s $DIR/.gitconfig $HOME
-ln -s $DIR/.asoundrc $HOME
 ln -s $DIR/.vimrc $HOME
 ln -s $DIR/.vim/* $HOME/.vim/
 ln -s $DIR/.ssh/* $HOME/.ssh/
 ln -s $DIR/.config/* $HOME/.config
+ln -s $DIR/.asoundrc $HOME
 
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-source $HOME/.bash_profile
+source $HOME/.profile
 
