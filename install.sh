@@ -6,7 +6,8 @@ SCRIPT_NAME=`basename "$0"`
 BACKUP=$HOME/.dotfiles_bkp
 mkdir -p $BACKUP
 
-mv $HOME/.bashrc* $BACKUP
+mv $HOME/.bashrc $BACKUP
+mv $HOME/.bash_profile $BACKUP
 mv $HOME/.vimrc $BACKUP
 mv $HOME/.vim $BACKUP
 mv $HOME/.profile $BACKUP
@@ -18,7 +19,7 @@ mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config
 
 ln -s $DIR/.bashrc $HOME
-ln -s $DIR/.basrc_profile $HOME
+ln -s $DIR/.bash_profile $HOME
 ln -s $DIR/.basrc_colors $HOME
 ln -s $DIR/.profile $HOME
 ln -s $DIR/.gitconfig $HOME
