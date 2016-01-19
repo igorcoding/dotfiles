@@ -116,8 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f ~/.bash_colors ]; then
-    . ~/.bash_colors
+if [ -f ~/.bashrc_colors ]; then
+    . ~/.bashrc_colors
 fi
 
 VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper_lazy.sh
