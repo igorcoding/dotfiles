@@ -100,3 +100,5 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
 au bufreadpre,bufnewfile *.bnf set ft=bnf
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+au BufNewFile,BufRead CMakeLists.txt set filetype=cmake
