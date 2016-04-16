@@ -13,10 +13,13 @@ mv $HOME/.vim $BACKUP
 mv $HOME/.profile $BACKUP
 mv $HOME/.asoundrc $BACKUP
 mv $HOME/.gitconfig $BACKUP
+mkdir -p $BACKUP/.pulse
+mv $HOME/.pulse/client.conf $BACKUP/.pulse/
 
 mkdir -p $HOME/.vim
 mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config
+mkdir -p $HOME/.pulse
 
 ln -s $DIR/.bashrc $HOME
 ln -s $DIR/.bashrc_colors $HOME
@@ -27,6 +30,7 @@ ln -s $DIR/.vim/* $HOME/.vim/
 ln -s $DIR/.ssh/* $HOME/.ssh/
 ln -s $DIR/.config/* $HOME/.config
 ln -s $DIR/.asoundrc $HOME
+ln -s $DIR/.pulse/* $HOME/.pulse
 
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
