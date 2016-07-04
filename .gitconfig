@@ -9,3 +9,4 @@
 	default = simple
 [alias]
 	lg = log --pretty=format:\"%Cgreen %h %Cblue %ad %Creset | %s%d %Cred [%an]\" --graph --date=short
+	st = status
