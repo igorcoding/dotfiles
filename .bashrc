@@ -120,15 +120,8 @@ if [ -f ~/.bashrc_colors ]; then
     . ~/.bashrc_colors
 fi
 
-VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper_lazy.sh
-if [ -f $VIRTUALENVWRAPPER ]; then
-    source $VIRTUALENVWRAPPER
-fi
-
-# source ~/perl5/perlbrew/etc/bashrc
-
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-export VAGRANT_HOME=/media/igor/SPARE/vagrant.d
+if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi

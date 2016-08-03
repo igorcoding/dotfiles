@@ -10,3 +10,7 @@
 [alias]
 	lg = log --pretty=format:\"%Cgreen %h %Cblue %ad %Creset | %s%d %Cred [%an]\" --graph --date=short
 	st = status
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

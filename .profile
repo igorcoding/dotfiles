@@ -37,13 +37,4 @@ fi
 #export LC_IDENTIFICATION=en_GB.UTF-8
 #export LC_ALL=en_US.UTF-8
 
-export GOPATH=$HOME/Projects/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-export PATH="/home/igor/perl5/bin${PATH+:}${PATH}"
-
-eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-#export PERL5LIB="/home/igor/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"
-#PERL_LOCAL_LIB_ROOT="/home/igor/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-#PERL_MB_OPT="--install_base \"/home/igor/perl5\""; export PERL_MB_OPT;
-#PERL_MM_OPT="INSTALL_BASE=/home/igor/perl5"; export PERL_MM_OPT;
+if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi

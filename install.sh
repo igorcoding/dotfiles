@@ -31,6 +31,8 @@ ln -s $DIR/.ssh/* $HOME/.ssh/
 ln -s $DIR/.config/* $HOME/.config
 ln -s $DIR/.asoundrc $HOME
 ln -s $DIR/.pulse/* $HOME/.pulse
+ln -s $DIR/.zshrc $HOME/.zshrc
+ln -s $DIR/.env.sh $HOME/.env.sh
 
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
