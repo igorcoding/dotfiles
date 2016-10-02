@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
@@ -56,6 +57,7 @@ set encoding=utf-8
 set fileencodings=utf8,cp1251
 set cursorline
 
+set background=dark
 colorscheme hybrid_material
 
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
