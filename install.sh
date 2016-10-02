@@ -6,24 +6,24 @@ SCRIPT_NAME=`basename "$0"`
 BACKUP=$HOME/.dotfiles_bkp
 mkdir -p $BACKUP
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 curl --version || exit 1
 zsh --version || exit 1
 
-FILES_TO_BACKUP=".bashrc
-.bash_profile
-.vimrc
-.zshrc
-.profile
-.asoundrc
-.gitconfig
-.pulse
-RD"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-for filename in "$FILES_TO_BACKUP"
+FILES_TO_BACKUP=(".bashrc"
+".bash_profile"
+".vimrc"
+".zshrc"
+".profile"
+".asoundrc"
+".gitconfig"
+".pulse")
+
+
+for filename in "${FILES_TO_BACKUP[@]}"
 do
-  mv "$HOME/$filename" $BACKUP > /dev/null 2>&1
+	mv "$HOME/$filename" $BACKUP
 done
 
 mkdir -p $HOME/.vim
