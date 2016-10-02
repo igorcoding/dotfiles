@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/igor/.oh-my-zsh
-#  export TERM="xterm-256color"
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/.dotfiles/oh-my-zsh-custom
+export TERM="xterm-256color"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -13,8 +14,8 @@ ZSH_THEME="dst"
 #ZSH_THEME="Soliah"
 #ZSH_THEME="fino"
 
-BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+#BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
+#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -72,7 +73,7 @@ ZSH_TMUX_AUTOSTART=true
 HISTSIZE=20000
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 
 

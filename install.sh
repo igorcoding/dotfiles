@@ -6,23 +6,32 @@ SCRIPT_NAME=`basename "$0"`
 BACKUP=$HOME/.dotfiles_bkp
 mkdir -p $BACKUP
 
-mv $HOME/.bashrc $BACKUP
-mv $HOME/.bash_profile $BACKUP
-mv $HOME/.vimrc $BACKUP
-mv $HOME/.vim $BACKUP
-mv $HOME/.profile $BACKUP
-mv $HOME/.asoundrc $BACKUP
-mv $HOME/.gitconfig $BACKUP
-mkdir -p $BACKUP/.pulse
-mv $HOME/.pulse/client.conf $BACKUP/.pulse/
+curl --version || exit 1
+zsh --version || exit 1
+
+FILES_TO_BACKUP=".bashrc
+.bash_profile
+.vimrc
+.profile
+.asoundrc
+.gitconfig
+.pulse
+RD"
+
+for filename in "$FILES_TO_BACKUP"
+do
+  mv "$HOME/$filename" $BACKUP > /dev/null 2>&1
+done
 
 mkdir -p $HOME/.vim
 mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config
 mkdir -p $HOME/.pulse
 
-ln -s $DIR/.bashrc $HOME
-ln -s $DIR/.bashrc_colors $HOME
+ln -s $DIR/.bashrc_extra.sh $HOME
+echo "if [ -f \"$HOME/.bashrc_extra.sh\" ]; then source \"$HOME/.bashrc_extra.sh\"; fi" >> $HOME/.bashrc
+
+ln -s $DIR/.bashrc_colors.sh $HOME
 ln -s $DIR/.profile $HOME
 ln -s $DIR/.gitconfig $HOME
 ln -s $DIR/.vimrc $HOME
@@ -40,3 +49,4 @@ vim +PluginInstall +qall
 
 source $HOME/.profile
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
