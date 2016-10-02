@@ -100,8 +100,8 @@ if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alFh"
 
-bindkey "${key[Up]}" up-line-or-local-history
-bindkey "${key[Down]}" down-line-or-local-history
+# bindkey "${key[Up]}" up-line-or-local-history
+# bindkey "${key[Down]}" down-line-or-local-history
 
 up-line-or-local-history() {
     zle set-local-history 1
