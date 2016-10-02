@@ -14,6 +14,7 @@ zsh --version || exit 1
 FILES_TO_BACKUP=".bashrc
 .bash_profile
 .vimrc
+.zshrc
 .profile
 .asoundrc
 .gitconfig
