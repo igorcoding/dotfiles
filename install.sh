@@ -6,6 +6,8 @@ SCRIPT_NAME=`basename "$0"`
 BACKUP=$HOME/.dotfiles_bkp
 mkdir -p $BACKUP
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 curl --version || exit 1
 zsh --version || exit 1
 
@@ -49,4 +51,4 @@ vim +PluginInstall +qall
 
 source $HOME/.profile
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
