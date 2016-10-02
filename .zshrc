@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$HOME/.dotfiles/oh-my-zsh-custom
+export ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 export TERM="xterm-256color"
 
 # Set name of the theme to load.
