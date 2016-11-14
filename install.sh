@@ -26,13 +26,15 @@ do
 	mv "$HOME/$filename" $BACKUP
 done
 
+cp $BACKUP/.bashrc $HOME  # restore
+
 mkdir -p $HOME/.vim
 mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config
 mkdir -p $HOME/.pulse
 
 ln -s $DIR/.bashrc_extra.sh $HOME
-echo "if [ -f \"$HOME/.bashrc_extra.sh\" ]; then source \"$HOME/.bashrc_extra.sh\"; fi" >> $HOME/.bashrc
+echo "\n\nif [ -f \"$HOME/.bashrc_extra.sh\" ]; then source \"$HOME/.bashrc_extra.sh\"; fi" >> $HOME/.bashrc
 
 ln -s $DIR/.bashrc_colors.sh $HOME
 ln -s $DIR/.profile $HOME
