@@ -15,4 +15,4 @@ if [ -f $VIRTUALENVWRAPPER ]; then
 	source $VIRTUALENVWRAPPER
 fi
 
-export VAGRANT_HOME=/media/igor/SPARE/vagrant.d
+export VAGRANT_HOME=/media/igor/DATA/vagrant.d

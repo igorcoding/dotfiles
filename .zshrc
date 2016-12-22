@@ -15,8 +15,8 @@ ZSH_THEME="dst"
 #ZSH_THEME="Soliah"
 #ZSH_THEME="fino"
 
-#BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
-#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -100,6 +100,7 @@ if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alFh"
+alias xopen="xdg-open"
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history
