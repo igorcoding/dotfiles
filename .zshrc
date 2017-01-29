@@ -101,6 +101,7 @@ if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alFh"
 alias xopen="xdg-open"
+alias mkvirtualenv3="mkvirtualenv --python=`which python3`"
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history
