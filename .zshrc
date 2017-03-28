@@ -8,11 +8,10 @@ export TERM="xterm-256color"
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="dst"
+#ZSH_THEME="dst"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="tonotdo"
-#ZSH_THEME="intheloop"
-#ZSH_THEME="Soliah"
+ZSH_THEME="intheloop"
 #ZSH_THEME="fino"
 
 BASE16_SHELL="$HOME/.config/base16-shell/base16-material.dark.sh"

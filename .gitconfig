@@ -10,6 +10,8 @@
 [alias]
 	lg = log --pretty=format:\"%Cgreen %h %Cblue %ad %Creset | %s%d %Cred [%an]\" --graph --date=short
 	st = status
+	co = checkout
+	br = branch
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
