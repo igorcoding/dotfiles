@@ -1,7 +1,10 @@
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/Projects/go
+export GOBIN=$GOPATH/bin
 export PATH="$HOME/bin:/usr/local/go/bin:$GOPATH/bin:$PATH"
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-export RUST_SRC_PATH=/opt/rust/src
+export RUST_SRC_PATH="$HOME/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/perl5/bin${PATH+:}${PATH}"
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
@@ -20,3 +23,6 @@ if [ -f $VIRTUALENVWRAPPER ]; then
 fi
 
 export VAGRANT_HOME=/media/igor/DATA/vagrant.d
+
+export NVM_DIR="/home/igor/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

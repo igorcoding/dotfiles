@@ -101,6 +101,8 @@ if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 alias ll="ls -alFh"
 alias xopen="xdg-open"
 alias mkvirtualenv3="mkvirtualenv --python=`which python3`"
+alias mkvirtualenv35="mkvirtualenv --python=`which python3.5`"
+alias mkvirtualenv36="mkvirtualenv --python=`which python3.6`"
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history
@@ -120,3 +122,5 @@ zle -N down-line-or-local-history
 
 bindkey "^[[1;5A" up-line-or-history    # [CTRL] + Cursor up
 bindkey "^[[1;5B" down-line-or-history  # [CTRL] + Cursor down
+
+
