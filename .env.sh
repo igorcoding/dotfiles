@@ -8,8 +8,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/perl5/bin${PATH+:}${PATH}"
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
-	                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 #export PERL5LIB="/home/igor/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"

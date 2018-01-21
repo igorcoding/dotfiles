@@ -24,17 +24,19 @@
 # plugins=(git tmux vagrant virtualenv-prompt)
 
 
-source $HOME/Downloads/antigen.zsh
+source $HOME/dotfiles/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
-antigen bundle heroku
 antigen bundle pip
-antigen bundle lein
+antigen bundle nvm
+antigen bundle docker
 antigen bundle command-not-found
+antigen bundle chrissicool/zsh-256color
+antigen bundle Vifon/deer
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -50,6 +52,11 @@ SPACESHIP_EXIT_CODE_SHOW=true
 
 # Tell Antigen that you're done.
 antigen apply
+
+# deer
+autoload -U deer
+zle -N deer
+bindkey '\ek' deer
 
 # User configuration
 
