@@ -49,16 +49,16 @@ antigen apply
 #source <(kubectl completion zsh)
 
 # deer
-autoload -U deer
-zle -N deer
-bindkey '\ek' deer
+#autoload -U deer
+#zle -N deer
+#bindkey '\ek' deer
 
 # User configuration
 
 HISTSIZE=20000
 
 export LANG=en_US.UTF-8
-if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
+#if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 
 
 # Aliases
@@ -67,7 +67,6 @@ alias xopen="xdg-open"
 alias mkvirtualenv3="mkvirtualenv --python=`which python3`"
 alias mkvirtualenv35="mkvirtualenv --python=`which python3.5`"
 alias mkvirtualenv36="mkvirtualenv --python=`which python3.6`"
-alias tarantool-next="$HOME/Projects/tarantool/tarantool/src/tarantool"
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history

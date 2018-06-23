@@ -38,4 +38,3 @@ fi
 #export LC_ALL=en_US.UTF-8
 
 if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
-
