@@ -1,24 +1,5 @@
-source $HOME/dotfiles/antigen.zsh
+source ~/dotfiles/zsh-plugins.sh
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle pip
-antigen bundle nvm
-antigen bundle docker
-
-antigen bundle command-not-found
-antigen bundle chrissicool/zsh-256color
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle Vifon/deer
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load the theme.
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_DIR_PREFIX=""
 SPACESHIP_DIR_TRUNC=0
@@ -42,31 +23,32 @@ SPACESHIP_DOTNET_SHOW=false
 SPACESHIP_EMBER_SHOW=false
 SPACESHIP_VI_MODE_SHOW=false
 
+can-exec() {
+  which "$1" 2>/dev/null 1>/dev/null
+}
 
-# Tell Antigen that you're done.
-antigen apply
-
-#source <(kubectl completion zsh)
-
-# deer
-#autoload -U deer
-#zle -N deer
-#bindkey '\ek' deer
+# if can-exec kubectl; then
+#   source <(kubectl completion zsh)
+# fi
 
 # User configuration
 
 HISTSIZE=20000
 
 export LANG=en_US.UTF-8
-#if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
 
 
 # Aliases
 alias ll="ls -alFh"
 alias xopen="xdg-open"
+alias mkvirtualenv="source /usr/local/bin/virtualenvwrapper.sh && mkvirtualenv"
+alias rmvirtualenv="source /usr/local/bin/virtualenvwrapper.sh && rmvirtualenv"
+alias workon="source /usr/local/bin/virtualenvwrapper.sh && workon"
 alias mkvirtualenv3="mkvirtualenv --python=`which python3`"
 alias mkvirtualenv35="mkvirtualenv --python=`which python3.5`"
 alias mkvirtualenv36="mkvirtualenv --python=`which python3.6`"
+alias mkvirtualenv37="mkvirtualenv --python=`which python3.7`"
+alias mailcatcher="docker run -p 1080:1080 -p 1025:1025 --rm --name mailcatcher schickling/mailcatcher"
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history
@@ -87,4 +69,5 @@ zle -N down-line-or-local-history
 bindkey "^[[1;5A" up-line-or-history    # [CTRL] + Cursor up
 bindkey "^[[1;5B" down-line-or-history  # [CTRL] + Cursor down
 
-
+source "$HOME/.env.sh"
+# if [ -s "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi

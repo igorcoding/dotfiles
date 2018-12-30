@@ -38,3 +38,6 @@ fi
 #export LC_ALL=en_US.UTF-8
 
 if [ -f "$HOME/.env.sh" ]; then source "$HOME/.env.sh"; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

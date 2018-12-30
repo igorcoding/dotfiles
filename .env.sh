@@ -16,12 +16,10 @@ eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 #PERL_MB_OPT="--install_base \"/home/igor/perl5\""; export PERL_MB_OPT;
 #PERL_MM_OPT="INSTALL_BASE=/home/igor/perl5"; export PERL_MM_OPT;
 
-VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper_lazy.sh
-if [ -f $VIRTUALENVWRAPPER ]; then
-	source $VIRTUALENVWRAPPER
-fi
+# VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper_lazy.sh
+# if [ -f $VIRTUALENVWRAPPER ]; then
+# 	source $VIRTUALENVWRAPPER
+# fi
 
-export VAGRANT_HOME=/media/igor/DATA/vagrant.d
-
-export NVM_DIR="/home/igor/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/home/igor/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
