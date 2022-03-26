@@ -22,6 +22,7 @@ export LANG=en_US.UTF-8
 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey '^[w' backward-kill-line
 
 # Aliases
 alias ls='ls -G --color=auto'
@@ -38,6 +39,9 @@ fi
 
 if can-exec kubectl; then
   source <(kubectl completion zsh)
+fi
+if can-exec helm; then
+  source <(helm completion zsh)
 fi
 
 # Environment
