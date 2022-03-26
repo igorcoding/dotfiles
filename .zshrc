@@ -24,7 +24,7 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
 # Aliases
-alias ls='ls -G'
+alias ls='ls -G --color=auto'
 alias ll="ls -alFh"
 
 # Init
