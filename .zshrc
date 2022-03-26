@@ -20,6 +20,9 @@ enable-nvm() {
 HISTSIZE=100000
 export LANG=en_US.UTF-8
 
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
 # Aliases
 alias ls='ls -G'
 alias ll="ls -alFh"
