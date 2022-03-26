@@ -5,6 +5,7 @@
 	helper = cache --timeout=43200
 [core]
 	autocrlf = input
+	quotePath = false
 [push]
 	default = current
 [alias]
@@ -16,3 +17,5 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main

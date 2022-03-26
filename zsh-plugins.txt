@@ -1,7 +1,4 @@
-robbyrussell/oh-my-zsh folder:lib
 chrissicool/zsh-256color
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
-
-denysdovhan/spaceship-prompt

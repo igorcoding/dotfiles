@@ -60,6 +60,10 @@ set cursorline
 set background=dark
 colorscheme hybrid_material
 
+set mouse=a
+
+set clipboard=unnamed
+
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "set list
 
