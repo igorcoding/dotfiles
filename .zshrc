@@ -25,17 +25,32 @@ zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
     
-source ~/dotfiles/zsh-plugins.sh
+# source ~/dotfiles/zsh-plugins.sh
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+
+# Set the root name of the plugins files (.txt and .zsh) antidote will use.
+zsh_plugins=${ZDOTDIR:-~}/dotfiles/zsh-plugins
+
+# Ensure the .zsh_plugins.txt file exists so you can add plugins.
+[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+
+# Lazy-load antidote from its functions directory.
+fpath=($(brew --prefix)/opt/antidote/share/antidote/functions $fpath)
+autoload -Uz antidote
+
+# Generate a new static file whenever .zsh_plugins.txt is updated.
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+fi
+
+# Source your static plugins file.
+source ${zsh_plugins}.zsh
+
 
 eval "$(starship init zsh)"
 
 can-exec() {
   which "$1" 2>/dev/null 1>/dev/null
-}
-
-enable-nvm() {
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
 # User configuration
@@ -64,6 +79,8 @@ bindkey '^[w' backward-kill-line
 alias ls='ls -G --color=auto'
 alias ll="ls -alFh"
 alias k="kubectl"
+alias grep="grep --color='auto'"
+alias c="highlight -O ansi"
 
 # Init
 
@@ -72,7 +89,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
   #eval "$(pyenv virtualenv-init -)"
 fi
 
-# enable-nvm
 
 if can-exec kubectl; then
   source <(kubectl completion zsh)
@@ -81,11 +97,13 @@ if can-exec helm; then
   source <(helm completion zsh)
 fi
 
-# Environment
-
-export GOPATH=/Users/igor/Projects/go
-export PATH="$HOME/bin:$GOPATH/bin:$HOME/.krew/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-source "/usr/local/Caskroom/yandex-cloud-cli/latest/yandex-cloud-cli/completion.zsh.inc"
+# Misc
 
 eval "$(direnv hook zsh)"
+
+# The next line updates PATH for client-keystone-auth.
+if [ -f '/Users/igor/vk-cloud-solutions/path.bash.inc' ]; then source '/Users/igor/vk-cloud-solutions/path.bash.inc'; fi
+
+eval "$(/usr/local/bin/mise activate zsh)"
+eval "$(/usr/local/bin/mise completion zsh)"
+

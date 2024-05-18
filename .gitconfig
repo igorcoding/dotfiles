@@ -1,6 +1,7 @@
 [user]
 	name = igorcoding
 	email = igorcoding@gmail.com
+	signingkey = AB5A138297EE7761
 [credential]
 	helper = cache --timeout=43200
 [core]
@@ -20,3 +21,7 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
+[sequence]
+	#editor = code --wait
