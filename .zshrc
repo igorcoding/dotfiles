@@ -76,11 +76,15 @@ bindkey "^[[F" end-of-line
 bindkey '^[w' backward-kill-line
 
 # Aliases
-alias ls='ls -G --color=auto'
-alias ll="ls -alFh"
+#alias ls='ls -G --color=auto'
+alias ls="eza"
+#alias ll="ls -alFh"
+alias ll="eza -l --icons --git --all -h -F auto --hyperlink"
+alias cat="bat"
 alias k="kubectl"
 alias grep="grep --color='auto'"
 alias c="highlight -O ansi"
+alias lg="lazygit"
 
 # Init
 
@@ -101,9 +105,15 @@ fi
 
 eval "$(direnv hook zsh)"
 
-# The next line updates PATH for client-keystone-auth.
-if [ -f '/Users/igor/vk-cloud-solutions/path.bash.inc' ]; then source '/Users/igor/vk-cloud-solutions/path.bash.inc'; fi
-
 eval "$(/usr/local/bin/mise activate zsh)"
 eval "$(/usr/local/bin/mise completion zsh)"
 
+
+# The next line updates PATH for Yandex Cloud CLI.
+# if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
+
+# The next line enables shell command completion for yc.
+if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
+
+
+. "$HOME/.cargo/env"

@@ -7,6 +7,9 @@
 [core]
 	autocrlf = input
 	quotePath = false
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
 [push]
 	default = current
 [alias]
