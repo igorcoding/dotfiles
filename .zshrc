@@ -24,9 +24,10 @@ zstyle ':completion:*' matcher-list \
 zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
+brew_prefix=$(brew --prefix)
     
 # source ~/dotfiles/zsh-plugins.sh
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+source $brew_prefix/opt/antidote/share/antidote/antidote.zsh
 
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
 zsh_plugins=${ZDOTDIR:-~}/dotfiles/zsh-plugins
@@ -35,7 +36,7 @@ zsh_plugins=${ZDOTDIR:-~}/dotfiles/zsh-plugins
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
 
 # Lazy-load antidote from its functions directory.
-fpath=($(brew --prefix)/opt/antidote/share/antidote/functions $fpath)
+fpath=($brew_prefix/opt/antidote/share/antidote/functions $fpath)
 autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
@@ -105,8 +106,8 @@ fi
 
 eval "$(direnv hook zsh)"
 
-eval "$(/usr/local/bin/mise activate zsh)"
-eval "$(/usr/local/bin/mise completion zsh)"
+eval "$($brew_prefix/bin/mise activate zsh)"
+eval "$($brew_prefix/bin/mise completion zsh)"
 
 
 . "$HOME/.cargo/env"
