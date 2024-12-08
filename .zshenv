@@ -12,3 +12,4 @@ export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$HOME/.krew/bin:$PATH"
 export FIFTPATH=/Volumes/Workspace/ton/fiftlib
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
