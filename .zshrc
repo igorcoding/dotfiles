@@ -25,7 +25,7 @@ zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 brew_prefix=$(brew --prefix)
-    
+
 # source ~/dotfiles/zsh-plugins.sh
 source $brew_prefix/opt/antidote/share/antidote/antidote.zsh
 
@@ -81,15 +81,17 @@ bindkey '^[w' backward-kill-line
 alias ls="eza"
 #alias ll="ls -alFh"
 alias ll="eza -l --icons --git --all -h -F auto --hyperlink"
-alias cat="bat"
+alias cat="bat -p"
 alias k="kubectl"
 alias grep="grep --color='auto'"
 alias c="highlight -O ansi"
 alias lg="lazygit"
+alias pinentry='pinentry-mac'
+alias rm='trash'
 
 # Init
 
-if command -v pyenv 1>/dev/null 2>&1; then  
+if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   #eval "$(pyenv virtualenv-init -)"
 fi
@@ -108,5 +110,8 @@ eval "$(direnv hook zsh)"
 
 eval "$($brew_prefix/bin/mise completion zsh)"
 
-# The next line enables shell command completion for yc.
-if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
+if [ -f "$HOME/.zsh-local.sh" ]; then source "$HOME/.zsh-local.sh"; fi
