@@ -4,3 +4,4 @@ zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
 djui/alias-tips
 zdharma-continuum/fast-syntax-highlighting
+wfxr/forgit
