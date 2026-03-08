@@ -1,3 +1,5 @@
+# Uncomment the next line to profile zsh startup (then run: zprof)
+zmodload zsh/zprof
 autoload -Uz compinit
 compinit -C
 autoload -U select-word-style
@@ -10,10 +12,6 @@ setopt complete_in_word
 setopt always_to_end
 setopt auto_cd
 setopt multios
-# Appends every command to the history file once it is executed
-setopt inc_append_history
-# Reloads the history whenever you use it
-setopt share_history
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list \
@@ -24,7 +22,7 @@ zstyle ':completion:*' matcher-list \
 zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
-brew_prefix=$(brew --prefix)
+brew_prefix=/opt/homebrew
 
 # source ~/dotfiles/zsh-plugins.sh
 source $brew_prefix/opt/antidote/share/antidote/antidote.zsh
@@ -37,6 +35,7 @@ zsh_plugins=${ZDOTDIR:-~}/dotfiles/zsh-plugins
 
 # Lazy-load antidote from its functions directory.
 fpath=($brew_prefix/opt/antidote/share/antidote/functions $fpath)
+fpath=(${HOME}/.zsh/completion $fpath)
 autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
@@ -48,19 +47,22 @@ fi
 source ${zsh_plugins}.zsh
 
 
-eval "$(starship init zsh)"
+_starship_cache=$HOME/.zsh/completion/_starship_init_cached
+if [[ ! -f $_starship_cache || $(command -v starship) -nt $_starship_cache ]]; then
+  starship init zsh >| "$_starship_cache"
+fi
+source "$_starship_cache"
 
 can-exec() {
-  which "$1" 2>/dev/null 1>/dev/null
+  command -v "$1" >/dev/null 2>&1
 }
 
 # User configuration
-HISTSIZE=1000000000000000
-SAVEHIST=1000000000000000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
+setopt SHARE_HISTORY             # Share history between all sessions (implies INC_APPEND_HISTORY).
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
@@ -75,6 +77,8 @@ export LANG=en_US.UTF-8
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey '^[w' backward-kill-line
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # Aliases
 #alias ls='ls -G --color=auto'
@@ -91,27 +95,26 @@ alias rm='trash'
 
 # Init
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  #eval "$(pyenv virtualenv-init -)"
+_cache_completion() {
+  local cmd=$1 cache=$HOME/.zsh/completion/_${cmd}_cached
+  if can-exec "$cmd"; then
+    if [[ ! -f $cache || $(command -v "$cmd") -nt $cache ]]; then
+      "$cmd" completion zsh >| "$cache"
+    fi
+    source "$cache"
+  fi
+}
+_cache_completion kubectl
+_cache_completion helm
+
+if can-exec mise; then
+  eval "$(mise activate zsh)"
 fi
 
-
-if can-exec kubectl; then
-  source <(kubectl completion zsh)
-fi
-if can-exec helm; then
-  source <(helm completion zsh)
+if can-exec direnv; then
+  eval "$(direnv hook zsh)"
 fi
 
-# Misc
+export GPG_TTY=$(tty)
 
-eval "$(direnv hook zsh)"
-
-eval "$($brew_prefix/bin/mise completion zsh)"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.lmstudio/bin"
-# End of LM Studio CLI section
-
-if [ -f "$HOME/.zsh-local.sh" ]; then source "$HOME/.zsh-local.sh"; fi
+if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
