@@ -1,5 +1,6 @@
 . "$HOME/.cargo/env"
 
+export LANG=en_US.UTF-8
 export GOPATH=$HOME/Projects/go
 export FIFTPATH=/Volumes/Workspace/ton/fiftlib
 export HOMEBREW_NO_ENV_HINTS=true
