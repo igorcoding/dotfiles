@@ -94,6 +94,11 @@ fi
 
 # ── Prompt (starship) ────────────────────────────────────────────────────────
 
+# Empty the PROMPT_SP end-of-line marker. Keeps the padding/CR trick (so output
+# without a trailing newline still isn't eaten by the prompt) but stops the
+# inverse '%' from being left on screen when cmux redraws a restored pane.
+export PROMPT_EOL_MARK=''
+
 _starship_cache=$HOME/.zsh/completion/_starship_init_cached
 if [[ ! -f $_starship_cache || $(command -v starship) -nt $_starship_cache ]]; then
   starship init zsh >| "$_starship_cache"
@@ -110,17 +115,18 @@ bindkey '^[[B' history-substring-search-down     # Down arrow
 
 # ── Aliases ──────────────────────────────────────────────────────────────────
 
-#alias ls='ls -G --color=auto'
-alias ls="eza"
-#alias ll="ls -alFh"
-alias ll="eza -l --icons --git --all -h -F auto --hyperlink"
+alias ls='ls -G --color=auto'
+#alias ls="eza"
+alias ll="ls -alFh"
+#alias ll="eza -l --icons --git --all -h -F auto --hyperlink"
 alias cat="bat -p"
 alias k="kubectl"
 alias grep="grep --color='auto'"
-alias c="highlight -O ansi"
+#alias c="highlight -O ansi"
 alias lg="lazygit"
 alias pinentry='pinentry-mac'
 alias rm='trash'
+#alias c='claude --dangerously-skip-permissions'
 
 # ── Helper functions ─────────────────────────────────────────────────────────
 
@@ -129,7 +135,12 @@ can-exec() {
 }
 
 _cache_completion() {
-  local cmd=$1 cache=$HOME/.zsh/completion/_${cmd}_cached
+  # NB: keep these on separate lines. zsh declares every name in a `local`
+  # statement before expanding any of the right-hand sides, so `local cmd=$1
+  # cache=..._${cmd}_...` expands ${cmd} as empty and every tool ends up
+  # sharing one ~/.zsh/completion/__cached file.
+  local cmd=$1
+  local cache=$HOME/.zsh/completion/_${cmd}_cached
   if can-exec "$cmd"; then
     if [[ ! -f $cache || $(command -v "$cmd") -nt $cache ]]; then
       "$cmd" completion zsh >| "$cache"
@@ -142,6 +153,7 @@ _cache_completion() {
 
 _cache_completion kubectl
 _cache_completion helm
+_cache_completion entire
 
 if can-exec mise; then
   eval "$(mise activate zsh)"
@@ -158,3 +170,20 @@ fi
 # ── Environment ──────────────────────────────────────────────────────────────
 
 export GPG_TTY=$(tty)
+
+# ── Secrets ──────────────────────────────────────────────────────────────────
+# Load ~/.zsh-secrets only if it exists AND is owned by us AND has mode 0600.
+# Refuses to source world/group-readable files to keep tokens off disk-leak paths.
+if [[ -f ~/.zsh-secrets ]]; then
+  if [[ -O ~/.zsh-secrets ]]; then
+    perms=$(stat -f '%A' ~/.zsh-secrets 2>/dev/null)
+    if [[ $perms == "600" ]]; then
+      source ~/.zsh-secrets
+    else
+      print -u2 "warning ~/.zsh-secrets has mode $perms, expected 600 — not sourcing. Run: chmod 600 ~/.zsh-secrets"
+    fi
+    unset perms
+  else
+    print -u2 "warning: ~/.zsh-secrets is not owned by you — not sourcing"
+  fi
+fi

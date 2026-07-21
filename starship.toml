@@ -60,7 +60,6 @@ $rust\
 $scala\
 $solidity\
 $swift\
-$terraform\
 $typst\
 $vlang\
 $vagrant\
@@ -124,3 +123,8 @@ format = "via [${symbol}js ]($style)"
 
 [direnv]
 disabled = false
+
+[git_commit]
+disabled = false
+only_detached = false
+tag_disabled = false
